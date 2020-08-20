@@ -1,2 +1,2 @@
 // alert('Hello World!')
-var tdElements = document.getElementsByTagName("TD")
+var tdElements = document.getElementsByTagName("TD");
