@@ -72,13 +72,16 @@ var winners = ['a1-b1-c1',
     //check condition for specific symbol
     if (gv(posAr[0]) == smb && gv(posAr[1]) == smb && gv(posAr[2]) == smb) {
 
-      gameCompleted = true;
-      document.getElementById('winner').innerHTML = smb + " is the winner of this game, game over. Please start new game.";
-
       //color winning combination
       document.getElementById(posAr[0]).setAttribute('class','won');
       document.getElementById(posAr[1]).setAttribute('class','won');
       document.getElementById(posAr[2]).setAttribute('class','won');
+
+      //game completed
+      gameCompleted = true;
+      document.getElementById('winner').innerHTML = smb + " is the winner of this game, game over. Please start new game.";
+
+      
 
       return
 
