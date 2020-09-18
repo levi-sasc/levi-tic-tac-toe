@@ -1,58 +1,83 @@
 var tdElements = document.getElementsByTagName('TD');
 var isO = false;
 var lastSymbol = null;
+var gameCompleted = false;
 
+//add listener for click
 for(var tdElement of tdElements) {
-  tdElement. addEventListener('click', nextMove);
+  tdElement. addEventListener('click', handleClick);
 }
 
-function nextMove(event){
-  handleClick(event);
-  check_winner()
-}
-
+//handle click
 function handleClick(event) {
   var target = event.target;
 
-  // Prevent from changing again
-  if (target.innerHTML == 'X' || target.innerHTML == 'O') {
-    return
-  }    
-  
-  if (isO) {
-    target.innerHTML = 'O';
-    lastSymbol = 'O';
-    isO = false;
-  } else {
-    target.innerHTML = 'X';
-    lastSymbol = 'X';
-    isO = true;    
+   //if game not competed
+   if (!gameCompleted) {
+
+    // Prevent from changing again
+    if (target.innerHTML == 'X' || target.innerHTML == 'O') {
+      return
+    }    
+    
+    //switch symbol
+    if (isO) {
+      target.innerHTML = 'O';
+      lastSymbol = 'O';
+      target.setAttribute('class','O');
+      isO = false;
+    } else {
+      target.innerHTML = 'X';
+      lastSymbol = 'X';
+      target.setAttribute('class','X');
+      isO = true;    
+    }
+
+      checkWinner();
+
    }
 
+   return
+
   }
 
-  //get html from specific td
-  function gv(Id) {
-    var el = document.getElementById(Id)
-    return el.innerHTML
+  //get html from specific element
+  function gv(id) {
+    var el = document.getElementById(id);
+    return el.innerHTML;
   }
 
-function check_winner() {
+//check winner
+function checkWinner() {
 
 var smb = lastSymbol;
 
-//check winning combinations
-if ( (gv('a1') == smb &&  gv('a2') == smb &&  gv('a3')== smb) ||
- (gv('b1') == smb &&  gv('b2') == smb &&  gv('b3') == smb) ||
-  (gv('a2') == smb &&  gv('b2') == smb &&  gv('c3') == smb) ||
-    (gv('a3') == smb &&  gv('b2') == smb &&  gv('c1') == smb) ||
-     (gv('a1') == smb &&  gv('b1') == smb &&  gv('c1') == smb) ||
-       (gv('c1') == smb &&  gv('c2') == smb &&  gv('c3') == smb)||
-          (gv('a3') == smb &&  gv('b3') == smb &&  gv('c3') == smb)||
-             (gv('a1') == smb &&  gv('b2') == smb &&  gv('c3')==smb))
+//store winning combinations
+var winners = ['a1-b1-c1',
+              'a1-a2-a3',
+              'b1-b2-b3',
+              'c1-c2-c3',
+              'a2-b2-c2',
+              'a3-b3-c3',
+              'a3-b2-c1',
+              'a1-b2-c3'];
 
-alert ('You are the winner')
-return
+  //loop through winning combinations
+  for(var i=0;i<=winners.length-1;i++) {
+
+    //split by -
+    var posAr = winners[i].split('-');
+
+    //check condition for specific symbol
+    if (gv(posAr[0]) == smb && gv(posAr[1]) == smb && gv(posAr[2]) == smb) {
+
+      gameCompleted = true;
+      document.getElementById('winner').innerHTML = smb + " is the winner of this game, game over. Please start new game.";
+      return
+
+    }
+
+  }
+
 }
 
-//alert ('do not do anything, I am bad at programing')
