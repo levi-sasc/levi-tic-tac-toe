@@ -66,6 +66,8 @@ var winners = ['a1-b1-c1',
   //loop through winning combinations
   for(var i=0;i<=winners.length-1;i++) {
 
+    console.log(winners[i]);
+
     //split by -
     var posAr = winners[i].split('-');
 
@@ -86,6 +88,14 @@ var winners = ['a1-b1-c1',
     }
 
   }
+
+  function checkDraw() {
+    //add listener for click
+for(var td of tdElements) {
+  if (td.innerHTML == 'X' || td.innerHTML == 'O') {
+}}
+  }
+
 
 }
 
