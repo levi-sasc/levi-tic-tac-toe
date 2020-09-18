@@ -33,6 +33,7 @@ function handleClick(event) {
       isO = true;    
     }
 
+      //check winner
       checkWinner();
 
    }
