@@ -61,7 +61,7 @@ var winners = ['a1-b1-c1',
               'a2-b2-c2',
               'a3-b3-c3',
               'a3-b2-c1',
-              'a1-b2-c3'];
+              'a1-b2-c3',];
 
   //loop through winning combinations
   for(var i=0;i<=winners.length-1;i++) {
@@ -79,9 +79,7 @@ var winners = ['a1-b1-c1',
 
       //game completed
       gameCompleted = true;
-      document.getElementById('winner').innerHTML = smb + " is the winner of this game, game over. Please start new game.";
-
-      
+      document.getElementById('winner').innerHTML = smb + " is the winner of this game, game over. Please start new game.";      
 
       return
 
